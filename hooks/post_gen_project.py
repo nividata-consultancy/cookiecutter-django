@@ -96,10 +96,10 @@ def remove_packagejson_file():
 
 def remove_celery_files():
     file_names = [
-        os.path.join("config", "celery_app.py"),
-        os.path.join("{{ cookiecutter.project_slug }}", "users", "tasks.py"),
+        os.path.join("{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}", "celery_app.py"),
+        os.path.join("{{ cookiecutter.project_slug }}", "apps", "users", "tasks.py"),
         os.path.join(
-            "{{ cookiecutter.project_slug }}", "users", "tests", "test_tasks.py"
+            "{{ cookiecutter.project_slug }}", "apps", "users", "tests", "test_tasks.py"
         ),
     ]
     for file_name in file_names:
@@ -108,8 +108,8 @@ def remove_celery_files():
 
 def remove_async_files():
     file_names = [
-        os.path.join("config", "asgi.py"),
-        os.path.join("config", "websocket.py"),
+        os.path.join("{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}", "asgi.py"),
+        os.path.join("{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}", "websocket.py"),
     ]
     for file_name in file_names:
         os.remove(file_name)
@@ -275,8 +275,8 @@ def set_flags_in_envs(postgres_user, celery_flower_user, debug=False):
 
 
 def set_flags_in_settings_files():
-    set_django_secret_key(os.path.join("config", "settings", "local.py"))
-    set_django_secret_key(os.path.join("config", "settings", "test.py"))
+    set_django_secret_key(os.path.join("{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}", "settings", "local.py"))
+    set_django_secret_key(os.path.join("{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}", "settings", "test.py"))
 
 
 # def remove_envs_and_associated_files():
@@ -298,16 +298,16 @@ def remove_aws_dockerfile():
 
 
 def remove_drf_starter_files():
-    os.remove(os.path.join("config", "api_router.py"))
-    shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "users", "api"))
+    os.remove(os.path.join("{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}", "api_router.py"))
+    shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "apps", "users", "api"))
     os.remove(
         os.path.join(
-            "{{cookiecutter.project_slug}}", "users", "tests", "test_drf_urls.py"
+            "{{cookiecutter.project_slug}}", "apps", "users", "tests", "test_drf_urls.py"
         )
     )
     os.remove(
         os.path.join(
-            "{{cookiecutter.project_slug}}", "users", "tests", "test_drf_views.py"
+            "{{cookiecutter.project_slug}}", "apps", "users", "tests", "test_drf_views.py"
         )
     )
 
