@@ -1,5 +1,15 @@
 #!/bin/sh
 
+if [ -d "$HOME/projects/cookiecutter-django" ]
+then
+    echo "Removing current cookiecutter"
+    rm -r $HOME/projects/cookiecutter-django
+fi
+
+cd $HOME/projects
+git clone https://github.com/nividata-consultancy/cookiecutter-django
+cookiecutter cookiecutter-django
+
 echo "Is the project using frontend framework? [y/n]"
 read is_frontend_framework_used
 
@@ -85,9 +95,7 @@ else
     mkdir $HOME/projects
 fi
 
-cd $HOME/projects
-git clone
-cookiecutter https://github.com/nividata-consultancy/cookiecutter-django
+
 
 
 echo "Congratulations!! Your project is setup."
