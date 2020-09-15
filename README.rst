@@ -1,81 +1,6 @@
 Cookiecutter Django
 =======================
 
-
-
-Features
----------
-
-* For Django 3.0
-* Works with Python 3.8
-* Renders Django projects with 100% starting test coverage
-* Twitter Bootstrap_ v4 (`maintained Foundation fork`_ also available)
-* 12-Factor_ based settings via django-environ_
-* Secure by default. We believe in SSL.
-* Optimized development and production settings
-* Registration via django-allauth_
-* Comes with custom user model ready to go
-* Optional basic ASGI setup for Websockets
-* Optional custom static build using Gulp and livereload
-* Send emails via Anymail_ (using Mailgun_ by default or Amazon SES if AWS is selected cloud provider, but switchable)
-* Media storage using Amazon S3 or Google Cloud Storage
-* Docker support using docker-compose_ for development and production (using Traefik_ with LetsEncrypt_ support)
-* Procfile_ for deploying to Heroku
-* Instructions for deploying to PythonAnywhere_
-* Run tests with unittest or pytest
-* Customizable PostgreSQL version
-* Default integration with pre-commit_ for identifying simple issues before submission to code review
-
-.. _`maintained Foundation fork`: https://github.com/Parbhat/cookiecutter-django-foundation
-
-
-Optional Integrations
----------------------
-
-*These features can be enabled during initial project setup.*
-
-* Serve static files from Amazon S3, Google Cloud Storage or Whitenoise_
-* Configuration for Celery_ and Flower_ (the latter in Docker setup only)
-* Integration with MailHog_ for local email testing
-* Integration with Sentry_ for error logging
-
-.. _Bootstrap: https://github.com/twbs/bootstrap
-.. _django-environ: https://github.com/joke2k/django-environ
-.. _12-Factor: http://12factor.net/
-.. _django-allauth: https://github.com/pennersr/django-allauth
-.. _django-avatar: https://github.com/grantmcconnaughey/django-avatar
-.. _Procfile: https://devcenter.heroku.com/articles/procfile
-.. _Mailgun: http://www.mailgun.com/
-.. _Whitenoise: https://whitenoise.readthedocs.io/
-.. _Celery: http://www.celeryproject.org/
-.. _Flower: https://github.com/mher/flower
-.. _Anymail: https://github.com/anymail/django-anymail
-.. _MailHog: https://github.com/mailhog/MailHog
-.. _Sentry: https://sentry.io/welcome/
-.. _docker-compose: https://github.com/docker/compose
-.. _PythonAnywhere: https://www.pythonanywhere.com/
-.. _Traefik: https://traefik.io/
-.. _LetsEncrypt: https://letsencrypt.org/
-.. _pre-commit: https://github.com/pre-commit/pre-commit
-
-Constraints
------------
-
-* Only maintained 3rd party libraries are used.
-* Uses PostgreSQL everywhere (9.4 - 12.3)
-* Environment variables for configuration (This won't work with Apache/mod_wsgi).
-
-Support this Project!
-----------------------
-
-This project is run by volunteers. Please support them in their efforts to maintain and improve Cookiecutter Django:
-
-* Daniel Roy Greenfeld, Project Lead (`GitHub <https://github.com/pydanny>`_, `Patreon <https://www.patreon.com/danielroygreenfeld>`_): expertise in Django and AWS ELB.
-
-* Nikita Shupeyko, Core Developer (`GitHub <https://github.com/webyneter>`_): expertise in Python/Django, hands-on DevOps and frontend experience.
-
-Projects that provide financial support to the maintainers:
-
 Usage
 ------
 
@@ -170,16 +95,73 @@ For local development, see the following:
 .. _`Developing locally`: http://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html
 .. _`Developing locally using docker`: http://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html
 
+Features
+---------
+
+* For Django 3.0
+* Works with Python 3.8
+* Renders Django projects with 100% starting test coverage
+* Twitter Bootstrap_ v4 (`maintained Foundation fork`_ also available)
+* 12-Factor_ based settings via django-environ_
+* Secure by default. We believe in SSL.
+* Optimized development and production settings
+* Registration via django-allauth_
+* Comes with custom user model ready to go
+* Optional basic ASGI setup for Websockets
+* Optional custom static build using Gulp and livereload
+* Send emails via Anymail_ (using Mailgun_ by default or Amazon SES if AWS is selected cloud provider, but switchable)
+* Media storage using Amazon S3 or Google Cloud Storage
+* Docker support using docker-compose_ for development and production (using Traefik_ with LetsEncrypt_ support)
+* Procfile_ for deploying to Heroku
+* Instructions for deploying to PythonAnywhere_
+* Run tests with unittest or pytest
+* Customizable PostgreSQL version
+* Default integration with pre-commit_ for identifying simple issues before submission to code review
+
+.. _`maintained Foundation fork`: https://github.com/Parbhat/cookiecutter-django-foundation
+
+
+Optional Integrations
+---------------------
+
+*These features can be enabled during initial project setup.*
+
+* Serve static files from Amazon S3, Google Cloud Storage or Whitenoise_
+* Configuration for Celery_ and Flower_ (the latter in Docker setup only)
+* Integration with MailHog_ for local email testing
+* Integration with Sentry_ for error logging
+
+.. _Bootstrap: https://github.com/twbs/bootstrap
+.. _django-environ: https://github.com/joke2k/django-environ
+.. _12-Factor: http://12factor.net/
+.. _django-allauth: https://github.com/pennersr/django-allauth
+.. _django-avatar: https://github.com/grantmcconnaughey/django-avatar
+.. _Procfile: https://devcenter.heroku.com/articles/procfile
+.. _Mailgun: http://www.mailgun.com/
+.. _Whitenoise: https://whitenoise.readthedocs.io/
+.. _Celery: http://www.celeryproject.org/
+.. _Flower: https://github.com/mher/flower
+.. _Anymail: https://github.com/anymail/django-anymail
+.. _MailHog: https://github.com/mailhog/MailHog
+.. _Sentry: https://sentry.io/welcome/
+.. _docker-compose: https://github.com/docker/compose
+.. _PythonAnywhere: https://www.pythonanywhere.com/
+.. _Traefik: https://traefik.io/
+.. _LetsEncrypt: https://letsencrypt.org/
+.. _pre-commit: https://github.com/pre-commit/pre-commit
+
+Constraints
+-----------
+
+* Only maintained 3rd party libraries are used.
+* Uses PostgreSQL everywhere (9.4 - 12.3)
+* Environment variables for configuration (This won't work with Apache/mod_wsgi).
+
+
 For Readers of Two Scoops of Django
 --------------------------------------------
 
 You may notice that some elements of this project do not exactly match what we describe in chapter 3. The reason for that is this project, amongst other things, serves as a test bed for trying out new ideas and concepts. Sometimes they work, sometimes they don't, but the end result is that it won't necessarily match precisely what is described in the book I co-authored.
-
-
-"Your Stuff"
--------------
-
-Scattered throughout the Python and HTML of this project are places marked with "your stuff". This is where third-party libraries are to be integrated with your project.
 
 Releases
 --------
