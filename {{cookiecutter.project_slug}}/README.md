@@ -9,13 +9,13 @@ Settings
 Always put values in the .env file and in settings file fetch that value using env module
 
 * base.py
-Common settings that required on all the servers will be kept in this file
+    * Common settings that required on all the servers will be kept in this file
 
 * production.py
-Production server settings will be kept in this file
+    * Production server settings will be kept in this file
 
 * local.py
-Development related settings will be kept in this file
+    * evelopment related settings will be kept in this file
 
 Basic Commands
 --------------
