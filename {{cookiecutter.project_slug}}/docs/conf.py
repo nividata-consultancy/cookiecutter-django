@@ -20,7 +20,7 @@ os.environ.setdefault("DATABASE_URL", "")
 {% else %}
 sys.path.insert(0, os.path.abspath(".."))
 {%- endif %}
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ cookiecutter.project_slug }}.settings.local")
 django.setup()
 
 # -- Project information -----------------------------------------------------

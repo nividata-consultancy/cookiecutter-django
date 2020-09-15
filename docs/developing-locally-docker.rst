@@ -69,7 +69,7 @@ Here, ``django`` is the target service we are executing the commands against.
 (Optionally) Designate your Docker Development Server IP
 --------------------------------------------------------
 
-When ``DEBUG`` is set to ``True``, the host is validated against ``['localhost', '127.0.0.1', '[::1]']``. This is adequate when running a ``virtualenv``. For Docker, in the ``config.settings.local``, add your host development server IP to ``INTERNAL_IPS`` or ``ALLOWED_HOSTS`` if the variable exists.
+When ``DEBUG`` is set to ``True``, the host is validated against ``['localhost', '127.0.0.1', '[::1]']``. This is adequate when running a ``virtualenv``. For Docker, in the ``{{ cookiecutter.project_slug }}.settings.local``, add your host development server IP to ``INTERNAL_IPS`` or ``ALLOWED_HOSTS`` if the variable exists.
 
 
 .. _envs:
@@ -89,39 +89,9 @@ This is the excerpt from your project's ``local.yml``: ::
       - local_postgres_data:/var/lib/postgresql/data
       - local_postgres_data_backups:/backups
     env_file:
-      - ./.envs/.local/.postgres
+      - ./.env
 
   # ...
-
-The most important thing for us here now is ``env_file`` section enlisting ``./.envs/.local/.postgres``. Generally, the stack's behavior is governed by a number of environment variables (`env(s)`, for short) residing in ``envs/``, for instance, this is what we generate for you: ::
-
-    .envs
-    ├── .local
-    │   ├── .django
-    │   └── .postgres
-    └── .production
-        ├── .django
-        └── .postgres
-
-By convention, for any service ``sI`` in environment ``e`` (you know ``someenv`` is an environment when there is a ``someenv.yml`` file in the project root), given ``sI`` requires configuration, a ``.envs/.e/.sI`` `service configuration` file exists.
-
-Consider the aforementioned ``.envs/.local/.postgres``: ::
-
-    # PostgreSQL
-    # ------------------------------------------------------------------------------
-    POSTGRES_HOST=postgres
-    POSTGRES_DB=<your project slug>
-    POSTGRES_USER=XgOWtQtJecsAbaIyslwGvFvPawftNaqO
-    POSTGRES_PASSWORD=jSljDz4whHuwO3aJIgVBrqEml5Ycbghorep4uVJ4xjDYQu0LfuTZdctj7y0YcCLu
-
-The three envs we are presented with here are ``POSTGRES_DB``, ``POSTGRES_USER``, and ``POSTGRES_PASSWORD`` (by the way, their values have also been generated for you). You might have figured out already where these definitions will end up; it's all the same with ``django`` service container envs.
-
-One final touch: should you ever need to merge ``.envs/.production/*`` in a single ``.env`` run the ``merge_production_dotenvs_in_dotenv.py``: ::
-
-    $ python merge_production_dotenvs_in_dotenv.py
-
-The ``.env`` file will then be created, with all your production envs residing beside each other.
-
 
 Tips & Tricks
 -------------
@@ -196,7 +166,7 @@ Prerequisites:
 * ``use_docker`` was set to ``y`` on project initialization;
 * ``use_celery`` was set to ``y`` on project initialization.
 
-By default, it's enabled both in local and production environments (``local.yml`` and ``production.yml`` Docker Compose configs, respectively) through a ``flower`` service. For added security, ``flower`` requires its clients to provide authentication credentials specified as the corresponding environments' ``.envs/.local/.django`` and ``.envs/.production/.django`` ``CELERY_FLOWER_USER`` and ``CELERY_FLOWER_PASSWORD`` environment variables. Check out ``localhost:5555`` and see for yourself.
+By default, it's enabled both in local and production environments (``local.yml`` and ``production.yml`` Docker Compose configs, respectively) through a ``flower`` service. For added security, ``flower`` requires its clients to provide authentication credentials specified as the corresponding environments' ``.env`` ``CELERY_FLOWER_USER`` and ``CELERY_FLOWER_PASSWORD`` environment variables. Check out ``localhost:5555`` and see for yourself.
 
 .. _`Flower`: https://github.com/mher/flower
 
@@ -208,17 +178,17 @@ Increasingly it is becoming necessary to develop software in a secure environmen
 On order to create a secure environment, we need to have a trusted SSL certficate installed in our Docker application.
 
 #.  **Let's Encrypt**
-    
-    The official line from Let’s Encrypt is: 
 
-    [For local development section] ... The best option: Generate your own certificate, either self-signed or signed by a local root, and trust it in your operating system’s trust store. Then use that certificate in your local web server. See below for details. 
+    The official line from Let’s Encrypt is:
+
+    [For local development section] ... The best option: Generate your own certificate, either self-signed or signed by a local root, and trust it in your operating system’s trust store. Then use that certificate in your local web server. See below for details.
 
     See `letsencrypt.org - certificates-for-localhost`_
 
     .. _`letsencrypt.org - certificates-for-localhost`: https://letsencrypt.org/docs/certificates-for-localhost/
 
 #.  **mkcert: Valid Https Certificates For Localhost**
-    
+
     `mkcert`_ is a simple by design tool that hides all the arcane knowledge required to generate valid TLS certificates. It works for any hostname or IP, including localhost. It supports macOS, Linux, and Windows, and Firefox, Chrome and Java. It even works on mobile devices with a couple manual steps.
 
     See https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/
@@ -253,11 +223,11 @@ local.yml
       restart: always
       depends_on:
         - django
-    
+
     ...
 
 #. Link the ``nginx-proxy`` to ``django`` through environmental variables.
-   
+
    ``django`` already has an ``.env`` file connected to it. Add the following variables. You should do this especially if you are working with a team and you want to keep your local environment details to yourself.
 
    ::

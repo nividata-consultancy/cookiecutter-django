@@ -114,7 +114,7 @@ function imgCompression() {
 // Run django server
 function asyncRunServer() {
   var cmd = spawn('gunicorn', [
-      'config.asgi', '-k', 'uvicorn.workers.UvicornWorker', '--reload'
+      '{{ cookiecutter.project_slug }}.asgi', '-k', 'uvicorn.workers.UvicornWorker', '--reload'
       ], {stdio: 'inherit'}
   )
   cmd.on('close', function(code) {

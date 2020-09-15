@@ -251,30 +251,26 @@ def append_to_gitignore_file(s):
 
 
 def set_flags_in_envs(postgres_user, celery_flower_user, debug=False):
-    local_django_envs_path = os.path.join(".envs", ".local", ".django")
-    production_django_envs_path = os.path.join(".envs", ".production", ".django")
-    local_postgres_envs_path = os.path.join(".envs", ".local", ".postgres")
-    production_postgres_envs_path = os.path.join(".envs", ".production", ".postgres")
+    env_path = os.path.join(".env")
+    set_django_secret_key(env_path)
+    set_django_admin_url(env_path)
 
-    set_django_secret_key(production_django_envs_path)
-    set_django_admin_url(production_django_envs_path)
-
-    set_postgres_user(local_postgres_envs_path, value=postgres_user)
+    set_postgres_user(env_path, value=postgres_user)
     set_postgres_password(
-        local_postgres_envs_path, value=DEBUG_VALUE if debug else None
+        env_path, value=DEBUG_VALUE if debug else None
     )
-    set_postgres_user(production_postgres_envs_path, value=postgres_user)
+    set_postgres_user(env_path, value=postgres_user)
     set_postgres_password(
-        production_postgres_envs_path, value=DEBUG_VALUE if debug else None
+        env_path, value=DEBUG_VALUE if debug else None
     )
 
-    set_celery_flower_user(local_django_envs_path, value=celery_flower_user)
+    set_celery_flower_user(env_path, value=celery_flower_user)
     set_celery_flower_password(
-        local_django_envs_path, value=DEBUG_VALUE if debug else None
+        env_path, value=DEBUG_VALUE if debug else None
     )
-    set_celery_flower_user(production_django_envs_path, value=celery_flower_user)
+    set_celery_flower_user(env_path, value=celery_flower_user)
     set_celery_flower_password(
-        production_django_envs_path, value=DEBUG_VALUE if debug else None
+        env_path, value=DEBUG_VALUE if debug else None
     )
 
 
@@ -283,9 +279,9 @@ def set_flags_in_settings_files():
     set_django_secret_key(os.path.join("config", "settings", "test.py"))
 
 
-def remove_envs_and_associated_files():
-    shutil.rmtree(".envs")
-    os.remove("merge_production_dotenvs_in_dotenv.py")
+# def remove_envs_and_associated_files():
+#     shutil.rmtree(".envs")
+#     os.remove("merge_production_dotenvs_in_dotenv.py")
 
 
 def remove_celery_compose_dirs():
@@ -364,12 +360,9 @@ def main():
                 "Heroku support is enabled so keeping them does not "
                 "make sense given your current setup." + TERMINATOR
             )
-        remove_envs_and_associated_files()
+        # remove_envs_and_associated_files()
     else:
         append_to_gitignore_file(".env")
-        append_to_gitignore_file(".envs/*")
-        if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
-            append_to_gitignore_file("!.envs/.local/")
 
     if "{{ cookiecutter.js_task_runner}}".lower() == "none":
         remove_gulp_files()

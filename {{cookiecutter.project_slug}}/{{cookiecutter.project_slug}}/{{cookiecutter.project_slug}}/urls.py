@@ -32,7 +32,7 @@ if settings.DEBUG:
 # API URLS
 urlpatterns += [
     # API base url
-    path("api/", include("config.api_router")),
+    path("api/", include("{{ cookiecutter.project_slug }}.api_router")),
     # DRF auth token
     path("auth-token/", obtain_auth_token),
 ]

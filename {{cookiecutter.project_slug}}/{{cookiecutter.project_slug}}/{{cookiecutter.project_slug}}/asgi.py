@@ -19,7 +19,7 @@ ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent
 sys.path.append(str(ROOT_DIR / "{{ cookiecutter.project_slug }}"))
 
 # If DJANGO_SETTINGS_MODULE is unset, default to the local settings
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ cookiecutter.project_slug }}.settings.local")
 
 # This application object is used by any ASGI server configured to use this file.
 django_application = get_asgi_application()
@@ -28,7 +28,7 @@ django_application = get_asgi_application()
 # application = HelloWorldApplication(application)
 
 # Import websocket application here, so apps from django_application are loaded first
-from config.websocket import websocket_application  # noqa isort:skip
+from {{ cookiecutter.project_slug }}.websocket import websocket_application  # noqa isort:skip
 
 
 async def application(scope, receive, send):

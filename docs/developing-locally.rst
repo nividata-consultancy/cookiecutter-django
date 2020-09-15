@@ -80,7 +80,7 @@ First things first.
 
 or if you're running asynchronously: ::
 
-    $ uvicorn config.asgi:application --host 0.0.0.0 --reload
+    $ uvicorn {{ cookiecutter.project_slug }}.asgi:application --host 0.0.0.0 --reload
 
 .. _PostgreSQL: https://www.postgresql.org/download/
 .. _Redis: https://redis.io/download
