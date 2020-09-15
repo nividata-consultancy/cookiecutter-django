@@ -61,7 +61,6 @@ Important Services
 This app comes with Celery. To run a celery worker:
 
 ```
-
     $ cd {{cookiecutter.project_slug}}
     $ celery -A {{ cookiecutter.project_slug }}.celery_app worker -l info
 ```
