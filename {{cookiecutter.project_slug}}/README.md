@@ -27,9 +27,7 @@ Basic Commands
     $ python manage.py createsuperuser
 ```
 
-* Type checks
-
-Running type checks with mypy:
+* To validate python types, run type checks with mypy:
 
 ```
     $ mypy {{cookiecutter.project_slug}}
@@ -54,10 +52,12 @@ Test coverage
   $ pytest
 ```
 
-{% if cookiecutter.use_celery == "y" %}
+
 
 Important Services
 ------------------
+{% if cookiecutter.use_celery == "y" %}
+
 * Celery
 
 This app comes with Celery. To run a celery worker:
