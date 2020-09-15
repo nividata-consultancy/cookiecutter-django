@@ -48,10 +48,8 @@ Test coverage
 
 
 ```
-
   $ pytest
 ```
-
 
 
 Important Services
@@ -79,10 +77,11 @@ Sentry is an error logging aggregator service. You must set the DSN url in produ
 
 {% endif %}
 
-
+{% if cookiecutter.use_docker == "y" %}
 * Docker
 
 See detailed `cookiecutter-django Docker documentation`_.
 
 .. _`cookiecutter-django Docker documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html
 
+{% endif %}
