@@ -5,9 +5,9 @@ from pathlib import Path
 
 import environ
 
-ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
+ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent.parent
 # {{ cookiecutter.project_slug }}/
-APPS_DIR = ROOT_DIR / "{{ cookiecutter.project_slug }}"
+PROJECT_DIR = ROOT_DIR / "{{ cookiecutter.project_slug }}"
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
@@ -85,7 +85,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "{{ cookiecutter.project_slug }}.apps.users.apps.UsersConfig",
+    "apps.users",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -94,7 +94,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "{{ cookiecutter.project_slug }}.contrib.sites.migrations"}
+MIGRATION_MODULES = {"sites": "contrib.sites.migrations"}
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
@@ -158,7 +158,7 @@ STATIC_ROOT = str(ROOT_DIR / "staticfiles")
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [str(APPS_DIR / "static")]
+STATICFILES_DIRS = [str(PROJECT_DIR / "static")]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -168,7 +168,7 @@ STATICFILES_FINDERS = [
 # MEDIA
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = str(APPS_DIR / "media")
+MEDIA_ROOT = str(PROJECT_DIR / "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = "/media/"
 
@@ -180,7 +180,7 @@ TEMPLATES = [
         # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-        "DIRS": [str(APPS_DIR / "templates")],
+        "DIRS": [str(PROJECT_DIR / "templates")],
         "OPTIONS": {
             # https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
             # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types
@@ -198,7 +198,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "{{ cookiecutter.project_slug }}.utils.context_processors.settings_context",
+                "utils.context_processors.settings_context",
             ],
         },
     }
@@ -213,7 +213,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 # FIXTURES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#fixture-dirs
-FIXTURE_DIRS = (str(APPS_DIR / "fixtures"),)
+FIXTURE_DIRS = (str(PROJECT_DIR / "fixtures"),)
 
 # SECURITY
 # ------------------------------------------------------------------------------
