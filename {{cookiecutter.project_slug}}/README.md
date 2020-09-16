@@ -3,11 +3,11 @@
 {{cookiecutter.description}}
 
 ## Installation
-* create a virtual environment using python3
+* Create a virtual environment using python3
 ```
 $ virtualenv -p python_interpreter_path env_name
 ```
-* activate the environment and install requirements
+* Activate the environment and install requirements
 ```
 $ source env_name/bin/activate
 ```
