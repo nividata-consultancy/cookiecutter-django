@@ -17,7 +17,7 @@ services:
       - mailhog
       {%- endif %}
     volumes:
-      - .:/app:z
+      - ./{{ cookiecutter.project_slug }}:/app:z
     env_file:
       - ./.env
     ports:
