@@ -17,12 +17,12 @@ $ source env_name/bin/activate
 $ mkvirtualenv -p python_interpreter_path env_name
 ```
 
-* Install dependancies for development, run
+* To install dependancies for development, run
 ```
 $ pip install -r requirements/local.txt
 ```
 
-* Install dependancies for production, run
+* To install dependancies for production, run
 ```
 $ pip install -r requirements/production.txt
 ```
@@ -44,6 +44,11 @@ Always put values in the .env file and in settings file fetch that value using e
 Basic Commands
 --------------
 
+* To run the project locally, use this command::
+
+```
+    $ python manage.py runserver
+```
 
 * To create an **superuser account**, use this command::
 
