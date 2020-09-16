@@ -2,6 +2,30 @@
 
 {{cookiecutter.description}}
 
+## Installation
+* create a virtual environment using python3
+```
+$ virtualenv -p python_interpreter_path env_name
+```
+* activate the environment and install requirements
+```
+$ source env_name/bin/activate
+```
+
+* Alternatively you can use Virtualenvwrapper
+```
+$ mkvirtualenv -p python_interpreter_path env_name
+```
+
+* Install dependancies for development, run
+```
+$ pip install -r requirements/local.txt
+```
+
+* Install dependancies for production, run
+```
+$ pip install -r requirements/production.txt
+```
 
 Settings
 --------
@@ -15,7 +39,7 @@ Always put values in the .env file and in settings file fetch that value using e
     * Production server settings will be kept in this file
 
 * local.py
-    * evelopment related settings will be kept in this file
+    * Development related settings will be kept in this file
 
 Basic Commands
 --------------
@@ -58,13 +82,13 @@ Important Services
 
 * Celery
 
-This app comes with Celery. To run a celery worker:
+   * This app comes with Celery. To run a celery worker:
 
 ```
     $ cd {{cookiecutter.project_slug}}
     $ celery -A {{ cookiecutter.project_slug }}.celery_app worker -l info
 ```
-Please note: For Celery's import magic to work, it is important *where* the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
+   * Please note: For Celery's import magic to work, it is important *where* the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
 
 {% endif %}
 
@@ -72,15 +96,15 @@ Please note: For Celery's import magic to work, it is important *where* the cele
 
 * Sentry
 
-Sentry is an error logging aggregator service. You must set the DSN url in production.
+   * Sentry is an error logging aggregator service. You must set the DSN url in production.
 
 {% endif %}
 
 {% if cookiecutter.use_docker == "y" %}
 * Docker
 
-See detailed `cookiecutter-django Docker documentation`_.
+   * See detailed `cookiecutter-django Docker documentation`_.
 
-.. _`cookiecutter-django Docker documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html
+   * .. _`cookiecutter-django Docker documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html
 
 {% endif %}
